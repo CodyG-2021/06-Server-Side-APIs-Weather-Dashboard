@@ -1,0 +1,26 @@
+h1 {
+	background-color: darkgrey;
+	text-align: center;
+}
+
+label {
+	margin-top: 10px;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.card {
+	margin: 10px;
+}
+
+.colOne {
+	background-color: darkkhaki;
+}
+
+.colTwo {
+	background-color: rgb(255, 255, 255);
+}
+
+/* .mainCon {
+	min-height: 400px;
+} */
