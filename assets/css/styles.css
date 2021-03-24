@@ -21,6 +21,6 @@ label {
 	background-color: rgb(255, 255, 255);
 }
 
-/* .mainCon {
-	min-height: 400px;
-} */
+.histBtnRow {
+	margin-top: 5px;
+}
