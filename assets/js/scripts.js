@@ -1,12 +1,12 @@
 var key = '64f2ee2a8261daa4d9f780f5b365f275';
 var city = "Denver"
 
+//Grabs the current time and date
 var date = moment().format('dddd, MMMM Do YYYY');
 var dateTime = moment().format('YYYY-MM-DD HH:MM:SS')
-// console.log(dateTime);
 
 var cityHist = [];
-//Will save the text value of the search and save it to an array
+//Will save the text value of the search and save it to an array and storage
 $('.search').on("click", function (event) {
 	event.preventDefault();
 	city = $(this).parent('.btnPar').siblings('.textVal').val().trim();
@@ -37,9 +37,10 @@ function getHistory() {
 
 		contHistEl.prepend(rowEl);
 		rowEl.append(btnEl);
-	}	if (!city) {
+	} if (!city) {
 		return;
 	}
+	//Allows the buttons to start a search as well
 	$('.histBtn').on("click", function (event) {
 		event.preventDefault();
 		city = $(this).text();
@@ -50,7 +51,7 @@ function getHistory() {
 
 //Grab the main 'Today' card body.
 var cardTodayBody = $('.cardBodyToday')
-
+//Applies the weather data to the today card and then launches the five day forecast
 function getWeatherToday() {
 	var getUrlCurrent = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${key}`;
 
@@ -63,7 +64,7 @@ function getWeatherToday() {
 		$('.cardTodayCityName').text(response.name);
 		$('.cardTodayDate').text(date);
 		//Icons
-		$('.icons').attr('src', `http://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png`);
+		$('.icons').attr('src', `https://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png`);
 		// Temperature
 		var pEl = $('<p>').text(`Temperature: ${response.main.temp} °F`);
 		cardTodayBody.append(pEl);
@@ -88,8 +89,6 @@ function getWeatherToday() {
 			url: getUrlUvi,
 			method: 'GET',
 		}).then(function (response) {
-			// console.log('what');
-			// console.log(response.current.uvi);
 			var pElUvi = $('<p>').text(`UV Index: `);
 			var uviSpan = $('<span>').text(response.current.uvi);
 			var uvi = response.current.uvi;
@@ -123,6 +122,7 @@ function getFiveDayForecast() {
 	}).then(function (response) {
 		var fiveDayArray = response.list;
 		var myWeather = [];
+		//Made a object that would allow for easier data read
 		$.each(fiveDayArray, function (index, value) {
 			testObj = {
 				date: value.dt_txt.split(' ')[0],
@@ -137,7 +137,7 @@ function getFiveDayForecast() {
 				myWeather.push(testObj);
 			}
 		})
-
+		//Inject the cards to the screen 
 		for (let i = 0; i < myWeather.length; i++) {
 
 			var divElCard = $('<div>');
@@ -157,9 +157,8 @@ function getFiveDayForecast() {
 
 			var divElIcon = $('<img>');
 			divElIcon.attr('class', 'icons');
-			divElIcon.attr('src', `http://openweathermap.org/img/wn/${myWeather[i].icon}@2x.png`);
+			divElIcon.attr('src', `https://openweathermap.org/img/wn/${myWeather[i].icon}@2x.png`);
 			divElBody.append(divElIcon);
-
 
 			//Temp
 			var pElTemp = $('<p>').text(`Temperature: ${myWeather[i].temp} °F`);
@@ -174,6 +173,7 @@ function getFiveDayForecast() {
 	});
 };
 
+//Allows for the example data to load for Denver
 function initLoad() {
 
 	var cityHistStore = JSON.parse(localStorage.getItem('city'));

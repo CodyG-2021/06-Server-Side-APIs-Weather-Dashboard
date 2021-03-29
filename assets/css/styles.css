@@ -2,31 +2,25 @@ h1 {
 	background-color: darkgrey;
 	text-align: center;
 }
-
 label {
 	margin-top: 10px;
 	font-weight: bold;
 	font-size: 20px;
 }
-
 .card {
 	margin: 10px;
 }
-
 .colOne {
 	background-color: white;
 	/* darkkhaki */
 }
-
 .colTwo {
 	background-color: rgb(255, 255, 255);
 }
-
 .histBtnRow {
 	margin-top: 5px;
 	margin-bottom: 5px;
 }
-
 .green{
   background-color: lightgreen;
 }
@@ -42,12 +36,10 @@ label {
 .purple{
   background-color: purple;
 }
-
 .icons {
 	height: 70px;
 	width: 70px;
 }
-
 .cardTodayDate {
 	font-size: 20px;
 }
